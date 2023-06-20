@@ -1,10 +1,29 @@
 import http from "../helper/http";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 
-import {useNavigate} from "react-router-dom";
-export default function Create() {
+import {useNavigate, useParams} from "react-router-dom";
+export default function Edit() {
   const navigate = useNavigate();
     const [inputs, setInputs] = useState({});
+    const {id}= useParams();
+
+    useEffect(() => {
+        fetchUserById();
+    }
+    , []);
+    const fetchUserById = () => {
+        http.get("/users/"+id+'/edit').then((response) => {
+            setInputs(
+                {
+                    name: response.data.name,
+                    email: response.data.email,
+
+                }
+            );
+        }).catch((error) => {
+            console.log(error);
+        });
+    }
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -13,7 +32,7 @@ export default function Create() {
 
   const submitForm = () => {
     console.log(inputs);
-    http.post("/users", inputs).then((response) => {
+    http.post("/users/"+id, inputs).then((response) => {
         navigate("/");
         }).catch((error) => {
         console.log(error);
@@ -48,17 +67,9 @@ export default function Create() {
                 value={inputs.email || ""}
                 onChange={handleChange}
               />
-              <label>Password</label>
-              <input
-                type="password"
-                name="password"
-                className="form-control mb-2"
-                placeholder="Password"
-                value={inputs.password || ""}
-                onChange={handleChange}
-              />
+
               <button className="btn btn-primary" onClick={submitForm}>
-                Create
+                Update
               </button>
             </div>
           </div>

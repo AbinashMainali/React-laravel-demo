@@ -4,6 +4,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import Create from "./pages/Create";
 import { Nav, Navbar } from "react-bootstrap";
+import Edit from "./pages/Edit";
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/create" element={<Create />} />
+          <Route path="/edit/:id" element={<Edit />} />
         </Routes>
       </div>
     </div>

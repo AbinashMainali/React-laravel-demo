@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -9,9 +10,9 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): \Illuminate\Http\JsonResponse
     {
-        return response()->json(User::get());
+        return response()->json(User::latest()->get());
     }
 
     /**
@@ -20,6 +21,7 @@ class UserController extends Controller
     public function create()
     {
         //
+
     }
 
     /**
@@ -27,7 +29,13 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password'=>bcrypt($request->password)
+
+        ]);
+        return response()->json(['message'=>'User created successfully']);
     }
 
     /**
@@ -36,6 +44,7 @@ class UserController extends Controller
     public function show(string $id)
     {
         //
+
     }
 
     /**
@@ -43,7 +52,7 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return response()->json(User::where('id',$id)->first());
     }
 
     /**

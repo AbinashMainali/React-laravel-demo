@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import http from "../helper/http";
+import {Link} from "react-router-dom";
 
 export default function Home() {
   const [users, setUsers] = useState([]);
@@ -34,10 +35,12 @@ export default function Home() {
           {users.map((user, index) => {
             return (
               <tr key={user.id}>
-                <td>{index}</td>
-                <td>{user.username}</td>
+                <td>{++index}</td>
+                <td>{user.name}</td>
                 <td>{user.email}</td>
-                <td>edit</td>
+                <td>
+                  <Link className={"btn btn-primary"} to={"/edit/" + user.id}>edit</Link>
+                </td>
               </tr>
             );
           })}
