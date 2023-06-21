@@ -32,7 +32,7 @@ export default function Edit() {
 
   const submitForm = () => {
     console.log(inputs);
-    http.post("/users/"+id, inputs).then((response) => {
+    http.put("/users/"+id, inputs).then((response) => {
         navigate("/");
         }).catch((error) => {
         console.log(error);

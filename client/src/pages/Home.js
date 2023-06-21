@@ -19,6 +19,16 @@ export default function Home() {
         console.log(error);
       });
   };
+
+  const deleteUser = (id) => {
+    http.delete("/users/"+id).then((response) => {
+        fetchAllUsers();
+    }
+    ).catch((error) => {
+        console.log(error);
+    }
+    );
+  }
   return (
     <div className="container">
       <h2>User Listing</h2>
@@ -39,7 +49,10 @@ export default function Home() {
                 <td>{user.name}</td>
                 <td>{user.email}</td>
                 <td>
-                  <Link className={"btn btn-primary"} to={"/edit/" + user.id}>edit</Link>
+                  <Link className={"btn btn-primary m-2"} to={"/edit/" + user.id}>Edit</Link>
+                  <Link className={"btn btn-primary"} to={"/view/" + user.id}>View</Link>&nbsp;
+                  <button type={"button"} className={"btn btn-danger m-2"} onClick={()=>deleteUser(user.id)}>Delete</button>
+
                 </td>
               </tr>
             );

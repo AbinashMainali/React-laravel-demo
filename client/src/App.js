@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Create from "./pages/Create";
 import { Nav, Navbar } from "react-bootstrap";
 import Edit from "./pages/Edit";
+import View from "./pages/View";
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/create" element={<Create />} />
           <Route path="/edit/:id" element={<Edit />} />
+          <Route path="/view/:id" element={<View />} />
         </Routes>
       </div>
     </div>
