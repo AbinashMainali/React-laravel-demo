@@ -3,7 +3,7 @@ Demo project
 This is practise project that i did for learning PHP laravel.
 Its not yet deployed
 so if you want to run its server you need to do following steps
-As the server and client are attached they need to be run separately
+As the server and client are not attached they need to be run separately
 In terminal of client directory
 npm run start   //to run client side
 
